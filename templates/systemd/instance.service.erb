@@ -12,6 +12,9 @@ TimeoutStartSec = <%= @start_timeout %>
 ExecStart = <%= scope.lookupvar('glassfish::glassfish_dir') %>/bin/asadmin start-domain <%= $domain_name %>
 ExecStop = <%= scope.lookupvar('glassfish::glassfish_dir') %>/bin/asadmin stop-domain <%= $domain_name %>
 ExecReload = <%= scope.lookupvar('glassfish::glassfish_dir') %>/bin/asadmin restart-domain <%= $domain_name %>
+<% if @file_limit -%>
+LimitNOFILE = <%= @file_limit %>
+<% end -%>
 Type = forking
 
 [Install]

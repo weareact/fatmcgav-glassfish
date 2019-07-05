@@ -56,7 +56,8 @@ define glassfish::create_service (
   $service_enable        = true,
   $service_name          = undef,
   $service_provider      = $glassfish::service_provider,
-  $systemd_start_timeout = undef
+  $systemd_start_timeout = undef,
+  $systemd_file_limit    = undef
 ) {
   # Check that we've got a domain name if domain mode.
   if $mode == 'domain' and !$domain_name {
@@ -105,6 +106,7 @@ define glassfish::create_service (
         enable        => $service_enable,
         mode          => $mode,
         start_timeout => $systemd_start_timeout,
+        file_limit    => $systemd_file_limit,
         user          => $runuser
       }
     }

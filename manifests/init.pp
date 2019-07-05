@@ -121,10 +121,11 @@ class glassfish (
   $service_provider        = $glassfish::params::service_provider,
   $start_domain            = $glassfish::params::glassfish_start_domain,
   $systemd_start_timeout   = undef,
+  $systemd_file_limit      = undef,
   $tmp_dir                 = $glassfish::params::glassfish_tmp_dir,
   $user                    = $glassfish::params::glassfish_user,
   $version                 = $glassfish::params::glassfish_version
-  ) inherits glassfish::params {
+) inherits glassfish::params {
   #
   ## Calculate some vars based on passed parameters
   #
@@ -156,9 +157,9 @@ class glassfish (
 
 
   if $remove_default_domain and $create_domain {
-      if $domain_name == 'domain1' {
-        fail("creating 'domain1' and removing default domain 'domain1' together makes no sense")
-      }
+    if $domain_name == 'domain1' {
+      fail("creating 'domain1' and removing default domain 'domain1' together makes no sense")
+    }
   }
 
   #

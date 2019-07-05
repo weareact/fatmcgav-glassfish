@@ -62,7 +62,8 @@ define glassfish::create_domain (
   $service_enable        = true,
   $service_name          = $glassfish::service_name,
   $start_domain          = $glassfish::start_domain,
-  $systemd_start_timeout = $glassfish::systemd_start_timeout
+  $systemd_start_timeout = $glassfish::systemd_start_timeout,
+  $systemd_file_limit    = $glassfish::systemd_file_limit,
 ) {
   # Service name
   if ($service_name == undef) {
@@ -108,6 +109,7 @@ define glassfish::create_domain (
       service_name          => $svc_name,
       service_enable        => $service_enable,
       systemd_start_timeout => $systemd_start_timeout,
+      systemd_file_limit    => $systemd_file_limit,
       require               => Domain[$domain_name]
     }
   }

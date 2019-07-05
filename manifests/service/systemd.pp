@@ -19,6 +19,7 @@ define glassfish::service::systemd (
   $ensure,
   $enable,
   $mode,
+  $file_limit    = undef,
   $start_timeout = undef,
   $status        = $glassfish::service_status,
   $status_cmd    = undef,
